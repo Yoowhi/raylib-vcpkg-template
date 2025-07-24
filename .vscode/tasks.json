@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Raylib Game",
+            "type": "shell",
+            "command": "cmake --build .",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Builds the raylib project using CMake"
+        },
+        {
+            "label": "Configure CMake",
+            "type": "shell",
+            "command": "",
+            "args": [
+                "cmake",
+                "..",
+                "-DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "${input:vcpkgTriplet}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "detail": "Configures the CMake project with vcpkg toolchain for the selected OS."
+        }
+    ],
+    "inputs": [
+        {
+            "id": "vcpkgTriplet",
+            "type": "command",
+            "command": "workbench.action.showQuickPick",
+            "args": {
+                "placeholder": "Select vcpkg triplet for CMake configuration",
+                "items": [
+                    { "label": "macOS (ARM64)", "description": "arm64-osx", "value": "-DVCPKG_TARGET_TRIPLET=arm64-osx" },
+                    { "label": "Windows (x64)", "description": "x64-windows", "value": "-DVCPKG_TARGET_TRIPLET=x64-windows" },
+                    { "label": "Linux (x64)", "description": "x64-linux", "value": "-DVCPKG_TARGET_TRIPLET=x64-linux" }
+                ]
+            }
+        }
+    ]
+}
