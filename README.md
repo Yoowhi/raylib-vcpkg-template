@@ -65,13 +65,3 @@ cmake --build .
 ```bash
 ./bin/MyRaylibGame
 ```
-
-## 📄 License
-
-MIT License. See LICENSE for details.
-
-## 🙏 Credits
-
-* [raylib](https://www.raylib.com/)
-* [CMake](https://cmake.org/)
-* [vcpkg](https://vcpkg.io/)
